@@ -4,7 +4,18 @@
 Free / Open source Scrum/Agile Planning Poker Web App to estimate user stories for the Agile/Scrum teams. Create session and invite team members to estimate user stories efficiently. Intuitive UI/UX for voting the story points, showing team members voting status with emojis(👍 - Voting Done, 🤔 - Yet to Vote). Session Moderator has full control on revealing story points and restarting the session.
 
 > [!TIP]
-> So, Adam Manuel here. I forked this repository that had already worked. But I don't like GCP or firebase, so I replaced firebase with FaunaDB. I'm going to keep adding some additional automation as I felt the first time I used this with a group resulted in too much manual data input. Feel free to use any of this code, however you want. 
+> So, Adam Manuel here. I forked this repository that had already worked. But I don't like GCP or firebase, so I replaced firebase with FaunaDB. I'm going to keep adding some additional automation as I felt the first time I used this with a group resulted in too much manual data input. Feel free to use any of this code, however you want.
+
+
+Here's an example of the add'l features shown in the video below
+ - Added markdown rendering using the markdowns folder
+ - Added a secondary screen, with movable game center component
+ - Saves the votes for the session in localstorage
+ - Button to save the localstorage as a JSON for easy access to the data gathered
+ - Automatic screen switching during the vote reveal, and again for the next topic
+
+https://github.com/user-attachments/assets/c5be5b8f-5621-490a-bd53-8d50b5271f57
+
 
 ## Home Page
 
