@@ -3,3 +3,4 @@ build
 yarn-error.log
 coverage
 .env
+public/markdownFiles.json
