@@ -37,8 +37,7 @@ Free / Open source Scrum/Agile Planning Poker Web App to estimate user stories f
 
 1. React - Frontend
 2. Material-ui - UI Components
-3. Firestore - Database
-4. Firebase - Hosting
+3. FaunaDB - Database
 
 ## How to run the app locally for development
 
