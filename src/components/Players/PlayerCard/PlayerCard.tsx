@@ -13,11 +13,11 @@ import { isModerator } from '../../../utils/isModerator';
 interface PlayerCardProps {
   game: Game;
   player: Player;
-  currentPlayerId: string;
+  currentPlayerId: number;
 }
 
 export const PlayerCard: React.FC<PlayerCardProps> = ({ game, player, currentPlayerId }) => {
-  const removeUser = (gameId: string, playerId: string) => {
+  const removeUser = (gameId: number, playerId: number) => {
     removePlayer(gameId, playerId);
   };
 

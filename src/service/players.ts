@@ -12,20 +12,26 @@ import { Player, PlayerGame } from '../types/player';
 import { Status } from '../types/status';
 import { updateGameStatus } from './games';
 
-export const addPlayer = async (gameId: string, player: Player) => {
+export const addPlayer = async (gameId: number, player: Player) => {
   const game = await getGameFromStore(gameId);
   if (game) {
     addPlayerToGameInStore(gameId, player);
   }
 };
 
-export const removePlayer = async (gameId: string, playerId: string) => {
+export const removePlayer = async (gameId: number, playerId: number) => {
   const game = await getGameFromStore(gameId);
   if (game) {
     removePlayerFromGameInStore(gameId, playerId);
   }
 };
-export const updatePlayerValue = async (gameId: string, playerId: string, value: number, randomEmoji: string) => {
+
+export const updatePlayerValue = async (
+  gameId: number,
+  playerId: number,
+  value: number,
+  randomEmoji: string,
+) => {
   const player = await getPlayerFromStore(gameId, playerId);
 
   if (player) {
@@ -47,7 +53,7 @@ export const getPlayerRecentGames = async (): Promise<PlayerGame[]> => {
   return playerGames;
 };
 
-export const getCurrentPlayerId = (gameId: string): string | undefined => {
+export const getCurrentPlayerId = (gameId: number): number | undefined => {
   let playerGames: PlayerGame[] = getPlayerGamesFromCache();
 
   const game = playerGames.find((playerGame) => playerGame.id === gameId);
@@ -56,20 +62,26 @@ export const getCurrentPlayerId = (gameId: string): string | undefined => {
 };
 
 export const updatePlayerGames = (
-  gameId: string,
+  gameId: number,
   gameName: string,
   createdBy: string,
-  createdById: string,
-  playerId: string
+  createdById: number,
+  playerId: number,
 ) => {
   let playerGames: PlayerGame[] = getPlayerGamesFromCache();
 
-  playerGames.push({ id: gameId, name: gameName, createdById: createdById, createdBy: createdBy, playerId });
+  playerGames.push({
+    id: gameId,
+    name: gameName,
+    createdById: createdById,
+    createdBy: createdBy,
+    playerId,
+  });
 
   updatePlayerGamesInCache(playerGames);
 };
 
-export const isCurrentPlayerInGame = async (gameId: string): Promise<boolean> => {
+export const isCurrentPlayerInGame = async (gameId: number): Promise<boolean> => {
   const playerGames = getPlayerGamesFromCache();
   const found = playerGames.find((playerGames) => playerGames.id === gameId);
   if (found) {
@@ -85,32 +97,42 @@ export const isCurrentPlayerInGame = async (gameId: string): Promise<boolean> =>
   return false;
 };
 
-export const isPlayerInGameStore = async (gameId: string, playerId: string) => {
+export const isPlayerInGameStore = async (gameId: number, playerId: number) => {
   const player = await getPlayerFromStore(gameId, playerId);
   return player ? true : false;
 };
 
-export const removeGameFromCache = (gameId: string) => {
+export const removeGameFromCache = (gameId: number) => {
   const playerGames = getPlayerGamesFromCache();
   updatePlayerGamesInCache(playerGames.filter((playerGame) => playerGame.id !== gameId));
 };
 
-export const addPlayerToGame = async (gameId: string, playerName: string): Promise<boolean> => {
+export const addPlayerToGame = async (gameId: number, playerName: string): Promise<boolean> => {
   const joiningGame = await getGameFromStore(gameId);
 
   if (!joiningGame) {
     console.log('Game not found');
     return false;
   }
-  const newPlayer = { name: playerName, id: ulid(), status: Status.NotStarted };
+  const newPlayer = {
+    name: playerName,
+    id: Math.floor(Math.random() * 1000000000000),
+    status: Status.NotStarted,
+  };
 
-  updatePlayerGames(joiningGame.id, joiningGame.name, joiningGame.createdBy, joiningGame.createdById, newPlayer.id);
+  updatePlayerGames(
+    joiningGame.id,
+    joiningGame.name,
+    joiningGame.createdBy,
+    joiningGame.createdById,
+    newPlayer.id,
+  );
   await addPlayerToGameInStore(gameId, newPlayer);
 
   return true;
 };
 
-export const resetPlayers = async (gameId: string) => {
+export const resetPlayers = async (gameId: number) => {
   const players = await getPlayersFromStore(gameId);
 
   players.forEach(async (player) => {

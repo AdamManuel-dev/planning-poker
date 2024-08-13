@@ -25,7 +25,7 @@ import './GameController.css';
 
 interface GameControllerProps {
   game: Game;
-  currentPlayerId: string;
+  currentPlayerId: number;
 }
 
 export const GameController: React.FC<GameControllerProps> = ({ game, currentPlayerId }) => {
@@ -46,7 +46,7 @@ export const GameController: React.FC<GameControllerProps> = ({ game, currentPla
     history.push(`/`);
   };
 
-  const handleRemoveGame = async (recentGameId: string) => {
+  const handleRemoveGame = async (recentGameId: number) => {
     await removeGame(recentGameId);
     window.location.href = '/';
   };

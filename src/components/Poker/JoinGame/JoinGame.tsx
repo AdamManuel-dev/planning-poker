@@ -1,4 +1,13 @@
-import { Button, Card, CardActions, CardContent, CardHeader, Grow, TextField, Snackbar } from '@material-ui/core';
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Grow,
+  TextField,
+  Snackbar,
+} from '@material-ui/core';
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { getGame } from '../../../service/games';
@@ -10,7 +19,7 @@ export const JoinGame = () => {
   const history = useHistory();
   let { id } = useParams<{ id: string }>();
 
-  const [joinGameId, setJoinGameId] = useState(id);
+  const [joinGameId, setJoinGameId] = useState(Number.parseInt(id));
   const [playerName, setPlayerName] = useState('');
   const [gameFound, setIsGameFound] = useState(true);
   const [showNotExistMessage, setShowNotExistMessage] = useState(false);
@@ -24,11 +33,11 @@ export const JoinGame = () => {
           if (await isCurrentPlayerInGame(joinGameId)) {
             history.push(`/game/${joinGameId}`);
           }
-        }else {
+        } else {
           setShowNotExistMessage(true);
           setTimeout(() => {
             history.push('/');
-          }, 5000)
+          }, 5000);
         }
       }
     }
@@ -70,7 +79,9 @@ export const JoinGame = () => {
                 placeholder='xyz...'
                 defaultValue={joinGameId}
                 variant='outlined'
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setJoinGameId(event.target.value)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  setJoinGameId(Number.parseInt(event.target.value))
+                }
               />
               <TextField
                 className='JoinGameTextField'
@@ -80,11 +91,19 @@ export const JoinGame = () => {
                 placeholder='Enter your name'
                 defaultValue={playerName}
                 variant='outlined'
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setPlayerName(event.target.value)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                  setPlayerName(event.target.value)
+                }
               />
             </CardContent>
             <CardActions className='JoinGameCardAction'>
-              <Button type='submit' variant='contained' color='primary' className='JoinGameButton' disabled={loading}>
+              <Button
+                type='submit'
+                variant='contained'
+                color='primary'
+                className='JoinGameButton'
+                disabled={loading}
+              >
                 Join
               </Button>
             </CardActions>

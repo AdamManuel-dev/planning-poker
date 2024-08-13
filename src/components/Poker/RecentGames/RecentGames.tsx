@@ -53,7 +53,7 @@ export const RecentGames = () => {
     return false;
   };
 
-  const handleRemoveGame = async (recentGameId: string) => {
+  const handleRemoveGame = async (recentGameId: number) => {
     await removeGame(recentGameId);
     setReloadRecent(!reloadRecent);
   };

@@ -1,21 +1,20 @@
 import { Card, CardContent, Grid, Grow, Slide, Typography } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { updatePlayerValue } from '../../../service/players';
 import { Game } from '../../../types/game';
 import { Player } from '../../../types/player';
 import { Status } from '../../../types/status';
 import { CardConfig, getCards, getRandomEmoji } from './CardConfigs';
 import './CardPicker.css';
-import { GoogleAd } from '../../GoogleAd/GoogleAd';
 
 interface CardPickerProps {
   game: Game;
   players: Player[];
-  currentPlayerId: string;
+  currentPlayerId: number;
 }
 export const CardPicker: React.FC<CardPickerProps> = ({ game, players, currentPlayerId }) => {
   const [randomEmoji, setRandomEmoji] = useState(getRandomEmoji);
-  const playPlayer = (gameId: string, playerId: string, card: CardConfig) => {
+  const playPlayer = (gameId: number, playerId: number, card: CardConfig) => {
     if (game.gameStatus !== Status.Finished) {
       updatePlayerValue(gameId, playerId, card.value, randomEmoji);
     }
@@ -28,6 +27,10 @@ export const CardPicker: React.FC<CardPickerProps> = ({ game, players, currentPl
   }, [game.gameStatus]);
 
   const cards = game.cards?.length ? game.cards : getCards(game.gameType);
+
+  // const cardStyle = useCallback(() => {
+  //   const style = getCardStyle(players, currentPlayerId, card);
+  // }, [])
 
   return (
     <Grow in={true} timeout={1000}>
@@ -42,10 +45,10 @@ export const CardPicker: React.FC<CardPickerProps> = ({ game, players, currentPl
                     className='CardPicker'
                     variant='outlined'
                     onClick={() => playPlayer(game.id, currentPlayerId, card)}
-                    style={{
-                      ...getCardStyle(players, currentPlayerId, card),
-                      pointerEvents: getPointerEvent(game),
-                    }}
+                    // style={{
+                    //   ...getCardStyle(players, currentPlayerId, card),
+                    //   pointerEvents: getPointerEvent(game),
+                    // }}
                   >
                     <CardContent className='CardContent'>
                       {card.value >= 0 && (
@@ -87,13 +90,12 @@ export const CardPicker: React.FC<CardPickerProps> = ({ game, players, currentPl
             ? 'Click on the card to vote'
             : 'Session not ready for Voting! Wait for moderator to start'}
         </Typography>
-        <GoogleAd />
       </div>
     </Grow>
   );
 };
 
-const getCardStyle = (players: Player[], playerId: string, card: CardConfig) => {
+const getCardStyle = (players: Player[], playerId: number, card: CardConfig) => {
   const player = players.find((player) => player.id === playerId);
   if (player && player.value !== undefined && player.value === card.value) {
     return {

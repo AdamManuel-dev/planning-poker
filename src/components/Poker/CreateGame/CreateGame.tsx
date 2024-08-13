@@ -60,7 +60,7 @@ export const CreateGame = () => {
       gameType: gameType,
       isAllowMembersToManageSession: allowMembersToManageSession,
       cards: gameType === GameType.Custom ? getCustomCards(customOptions) : getCards(gameType),
-      createdAt: new Date(),
+      createdAt: new Date().toISOString(),
     };
     const newGameId = await addNewGame(game);
     if (newGameId) {

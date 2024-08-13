@@ -2,17 +2,17 @@ import { Status } from './status';
 
 export interface Player {
   name: string;
-  id: string;
+  id: number;
   status: Status;
   value?: number;
   emoji?: string;
 }
 
 export interface PlayerGame {
-  id: string;
+  id: number;
   name: string;
   isAllowMembersToManageSession?: boolean;
-  createdById: string;
+  createdById: number;
   createdBy: string;
-  playerId: string;
+  playerId: number;
 }

@@ -26,7 +26,7 @@ function App() {
               <Route path='/about-planning-poker' component={AboutPage} />
               <Route path='/examples' component={ExamplesPage} />
               <Route path='/guide' component={GuidePage} />
-              <Route exact path='/*' component={HomePage} />
+              <Route exact path='/' component={HomePage} />
             </Switch>
           </Router>
         </StylesProvider>

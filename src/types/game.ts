@@ -2,7 +2,7 @@ import { CardConfig } from '../components/Players/CardPicker/CardConfigs';
 import { Status } from './status';
 
 export interface Game {
-  id: string;
+  id: number;
   name: string;
   average: number;
   gameStatus: Status;
@@ -10,9 +10,9 @@ export interface Game {
   isAllowMembersToManageSession?: boolean;
   cards: CardConfig[];
   createdBy: string;
-  createdById: string;
-  createdAt: Date;
-  updatedAt?: Date;
+  createdById: number;
+  createdAt: string;
+  updatedAt?: string;
 }
 
 export interface NewGame {
@@ -21,7 +21,7 @@ export interface NewGame {
   cards: CardConfig[];
   isAllowMembersToManageSession?: boolean;
   createdBy: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export enum GameType {

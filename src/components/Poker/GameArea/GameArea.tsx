@@ -9,7 +9,7 @@ import './GameArea.css';
 interface GameAreaProps {
   game: Game;
   players: Player[];
-  currentPlayerId: string;
+  currentPlayerId: number;
 }
 export const GameArea: React.FC<GameAreaProps> = ({ game, players, currentPlayerId }) => {
   return (

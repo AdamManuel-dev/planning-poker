@@ -15,44 +15,50 @@ import { Player } from '../types/player';
 import { Status } from '../types/status';
 import { removeGameFromCache, resetPlayers, updatePlayerGames } from './players';
 
-export const addNewGame = async (newGame: NewGame): Promise<string> => {
+export const addNewGame = async (newGame: NewGame): Promise<number> => {
   const player = {
     name: newGame.createdBy,
-    id: ulid(),
+    id: Math.floor(Math.random() * 1000000000000),
     status: Status.NotStarted,
   };
   const gameData = {
     ...newGame,
-    id: ulid(),
+    id: Math.floor(Math.random() * 1000000000000),
     average: 0,
     createdById: player.id,
     gameStatus: Status.Started,
   };
   await addGameToStore(gameData.id, gameData);
   await addPlayerToGameInStore(gameData.id, player);
-  updatePlayerGames(gameData.id, gameData.name, gameData.createdBy, gameData.createdById, player.id);
+  updatePlayerGames(
+    gameData.id,
+    gameData.name,
+    gameData.createdBy,
+    gameData.createdById,
+    player.id,
+  );
 
   return gameData.id;
 };
 
-export const streamGame = (id: string) => {
+export const streamGame = (id: number) => {
   return streamData(id);
 };
 
-export const streamPlayers = (id: string) => {
+export const streamPlayers = (id: number) => {
   return streamPlayersFromStore(id);
 };
 
-export const getGame = (id: string) => {
+export const getGame = (id: number) => {
   return getGameFromStore(id);
 };
 
-export const updateGame = async (gameId: string, updatedGame: any): Promise<boolean> => {
+export const updateGame = async (gameId: number, updatedGame: any): Promise<boolean> => {
   await updateGameDataInStore(gameId, updatedGame);
   return true;
 };
 
-export const resetGame = async (gameId: string) => {
+export const resetGame = async (gameId: number) => {
   const game = await getGameFromStore(gameId);
   if (game) {
     const updatedGame = {
@@ -64,7 +70,7 @@ export const resetGame = async (gameId: string) => {
   }
 };
 
-export const finishGame = async (gameId: string) => {
+export const finishGame = async (gameId: number) => {
   const game = await getGameFromStore(gameId);
   const players = await getPlayersFromStore(gameId);
 
@@ -102,7 +108,7 @@ export const getGameStatus = (players: Player[]): Status => {
   return Status.InProgress;
 };
 
-export const updateGameStatus = async (gameId: string): Promise<boolean> => {
+export const updateGameStatus = async (gameId: number): Promise<boolean> => {
   const game = await getGame(gameId);
   if (!game) {
     console.log('Game not found');
@@ -120,7 +126,7 @@ export const updateGameStatus = async (gameId: string): Promise<boolean> => {
   return false;
 };
 
-export const removeGame = async (gameId: string) => {
+export const removeGame = async (gameId: number) => {
   await removeGameFromStore(gameId);
   removeGameFromCache(gameId);
 };

@@ -1,6 +1,6 @@
 export const isModerator = (
-  moderatorId: string,
-  currentPlayerId: string | undefined,
+  moderatorId: number,
+  currentPlayerId: number | undefined,
   isAllowMembersToManageSession: boolean | undefined,
 ) => {
   if (isAllowMembersToManageSession) {

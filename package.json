@@ -8,6 +8,8 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@types/react-lazy-load-image-component": "^1.6.4",
     "country-flag-icons": "^1.5.7",
+    "dotenv": "^10.0.0",
+    "faunadb": "^4.8.0",
     "firebase": "^8.3.2",
     "i18next": "^23.2.11",
     "i18next-browser-languagedetector": "^7.1.0",
