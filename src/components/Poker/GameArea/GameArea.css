@@ -1,11 +1,11 @@
 .ContentArea {
   display: flex;
   flex-direction: column;
-  min-height: 60%;
+  min-height: 70%;
   border: 1px solid  var(--color-background);
   overflow: auto;
   padding: 2px;
-  justify-content: center;
+  justify-content: start;
 }
 
 .Footer {

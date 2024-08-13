@@ -6,7 +6,7 @@
 
 .GameControllerCard {
   border-radius: 5px;
-  background-color: var(--color-background-secondary);
+  background-color: #e7edf3c2;
 }
 
 .GameControllerCardContentArea {

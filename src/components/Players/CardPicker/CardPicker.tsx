@@ -35,20 +35,20 @@ export const CardPicker: React.FC<CardPickerProps> = ({ game, players, currentPl
   return (
     <Grow in={true} timeout={1000}>
       <div>
-        <div className='CardPickerContainer'>
-          <Grid container spacing={4} justify='center'>
+        <div className='CardPickerContainer' style={{ padding: '0.25rem 0.5rem' }}>
+          <Grid container spacing={2} justify='center'>
             {cards.map((card: CardConfig, index) => (
-              <Grid key={card.value} item xs>
+              <Grid key={card.value} item xs style={{ padding: '0px' }}>
                 <Slide in={true} direction={'right'} timeout={(1000 * index) / 2}>
                   <Card
                     id={`card-${card.displayValue}`}
                     className='CardPicker'
                     variant='outlined'
                     onClick={() => playPlayer(game.id, currentPlayerId, card)}
-                    // style={{
-                    //   ...getCardStyle(players, currentPlayerId, card),
-                    //   pointerEvents: getPointerEvent(game),
-                    // }}
+                    style={{
+                      ...getCardStyle(players, currentPlayerId, card),
+                      pointerEvents: getPointerEvent(game),
+                    }}
                   >
                     <CardContent className='CardContent'>
                       {card.value >= 0 && (
