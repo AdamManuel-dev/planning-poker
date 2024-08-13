@@ -3,16 +3,8 @@
 
 Free / Open source Scrum/Agile Planning Poker Web App to estimate user stories for the Agile/Scrum teams. Create session and invite team members to estimate user stories efficiently. Intuitive UI/UX for voting the story points, showing team members voting status with emojis(👍 - Voting Done, 🤔 - Yet to Vote). Session Moderator has full control on revealing story points and restarting the session.
 
-<div align="center">
-  
-[![Build and Tests](https://github.com/hellomuthu23/planning-poker/actions/workflows/build-and-tests.yml/badge.svg)](https://github.com/hellomuthu23/planning-poker/actions/workflows/build-and-tests.yml)
-[![Deploy to Firebase](https://github.com/hellomuthu23/planning-poker/actions/workflows/deploy-to-firebase-on-master.yml/badge.svg)](https://github.com/hellomuthu23/planning-poker/actions/workflows/deploy-to-firebase-on-master.yml)
-
-</div>
-
-## Live Site
-
-- <https://planning-poker-agile.web.app/>
+> [!TIP]
+> So, Adam Manuel here. I forked this repository that had already worked. But I don't like GCP or firebase, so I replaced firebase with FaunaDB. I'm going to keep adding some additional automation as I felt the first time I used this with a group resulted in too much manual data input. Feel free to use any of this code, however you want. 
 
 ## Home Page
 
@@ -38,13 +30,14 @@ Free / Open source Scrum/Agile Planning Poker Web App to estimate user stories f
 1. React - Frontend
 2. Material-ui - UI Components
 3. FaunaDB - Database
+4. RemarkJS
 
 ## How to run the app locally for development
 
 1. Clone the repo
 
     ```bash
-    git clone https://github.com/hellomuthu23/planning-poker.git
+    git clone https://github.com/AdamManuel-dev/planning-poker.git
     ```
 
 2. Run `yarn` command to install the required npm package.
@@ -62,18 +55,10 @@ Free / Open source Scrum/Agile Planning Poker Web App to estimate user stories f
 6. Use css until we have scss in place
 7. Don't duplicate code and use service folder to keep non-component/shared codes
 
-## Pending features open to development
+## Pending features
 
 1. Add timer
-2. Export options
-3. Preserve history of voting and show it in session
-4. Provide option to enter user story name
-5. Make the default Session name random
-
-## Tech Debts
-
-1. Add Semantic Release to generate changelog and release notes
-2. Add missing unit tests for services
-3. Upgrade Material UI to latest version
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/hellomuthu23)
+2. Preserve history of voting and show it in session
+3. Automatically aggregate all values at the end, and save a CSV of each vote
+4. Have ChatGPT contininously generate user stories if confused about the epic
+5. Create a text field that lets you past in a Notion database URL, and it turns it into individual slides planning poker. 
