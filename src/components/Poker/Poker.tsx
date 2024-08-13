@@ -54,7 +54,6 @@ export const Poker = () => {
     fetchPlayers();
 
     const intervalId = setInterval(() => {
-      // TODO: Watch for changes using the FaunaDB stream feature, instead of polling
       fetchGame();
       fetchPlayers();
     }, 1_000);
