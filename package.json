@@ -31,7 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --detectOpenHandles",
     "lint": "eslint .",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prestart": "node scripts/pre-process-markdown.js"
   },
   "eslintConfig": {
     "extends": [
