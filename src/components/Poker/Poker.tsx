@@ -57,7 +57,7 @@ export const Poker = () => {
       // TODO: Watch for changes using the FaunaDB stream feature, instead of polling
       fetchGame();
       fetchPlayers();
-    }, 500);
+    }, 1_000);
 
     return () => {
       effectCleanup = false;
